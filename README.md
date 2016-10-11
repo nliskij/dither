@@ -1,3 +1,4 @@
-I made dithering in haskell for some reason. I refreshed my parsec
-knowledge I guess. The actual dithering is broken because I'm dumb, but
-at least it can parse a ppm.
+I made dithering in haskell for some reason (this is not a good use case
+for haskell). Though I refreshed my parsec
+knowledge, I guess. It can turn things grayscale using ordered dithering
+now.
