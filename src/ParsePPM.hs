@@ -25,6 +25,15 @@ data PPM = PPM { header :: Header,
              bitmap :: [Pixel]
            }
 
+
+data Color = Black | White
+           deriving (Show, Enum, Eq)
+
+data PBM = PBM { widthBM :: Int,
+                 heightBM :: Int,
+                 bwPixels :: [Color]
+               }
+
 parseInteger :: (Read a, Integral a) => Parser a
 parseInteger = fmap read (many1 digit)
 
@@ -74,3 +83,6 @@ readBitMap :: FilePath -> IO PPM
 readBitMap path = do
   ppm <- BS.readFile path
   either (fail . show) return (parse parseBitMap path ppm)
+
+writePBM :: FilePath -> PBM -> IO ()
+writePBM path (PBM w h bw) = BS.writeFile path (BS.pack ("P1\n" ++ show w ++ "\n" ++ show h ++ "\n" ++ concatMap (\c -> if c == Black then "0 " else "1 ") bw))
