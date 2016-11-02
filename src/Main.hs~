@@ -1,7 +1,0 @@
-module Main where
-
-import ParsePPM
-
-main :: IO ()
-main = do
-  putStrLn "hello world"
